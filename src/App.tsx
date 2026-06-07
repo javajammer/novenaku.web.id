@@ -95,14 +95,14 @@ export default function App() {
 
       {/* Main Header / Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-100/85 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 md:gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 md:gap-3">
             <div className="w-8 h-8 md:w-10 md:h-10 shrink-0 bg-vatican-red rounded-full flex items-center justify-center text-white font-serif text-lg md:text-xl font-bold italic shadow-md">N</div>
-            <div>
-              <span className="font-serif-cinzel text-lg md:text-xl font-bold tracking-tight text-vatican-red block leading-none">
+            <div className="flex flex-col justify-center">
+              <span className="font-serif-cinzel text-base sm:text-lg md:text-xl font-bold tracking-tight text-vatican-red block leading-none">
                 novenaku<span className="text-vatican-gold">.id</span>
               </span>
-              <span className="font-sans-inter text-[8px] md:text-[9px] uppercase tracking-widest text-stone-500 font-bold block mt-1">
+              <span className="font-sans-inter text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-widest text-stone-500 font-bold block mt-1">
                 Aplikasi Devosional<span className="hidden sm:inline"> Katolik</span>
               </span>
             </div>
@@ -121,10 +121,10 @@ export default function App() {
             </a>
           </nav>
 
-          <div className="shrink-0">
+          <div className="shrink-0 ml-1">
             <a 
               href="#prayer-tracker-section" 
-              className="px-4 py-2 md:px-6 md:py-2 bg-vatican-red text-white hover:bg-vatican-red-dark font-serif-cinzel font-bold text-[10px] md:text-xs tracking-wider rounded-full transition-all shadow-md hover:shadow-lg uppercase"
+              className="px-3.5 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-2 bg-vatican-red text-white hover:bg-vatican-red-dark font-serif-cinzel font-bold text-[9px] sm:text-[10px] md:text-xs tracking-wider rounded-full transition-all shadow-md hover:shadow-lg uppercase text-center leading-none"
               id="cta-nav-mulai"
             >
               Mulai Doa
