@@ -1,6 +1,0 @@
-{
-  "name": "Novenaku",
-  "description": "Novenaku.id - Platform devosi dan doa Novena Katolik modern, elegan, dan ramah pengguna untuk perjalanan spiritual Anda.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
