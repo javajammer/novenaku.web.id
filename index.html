@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novenaku — Strengthen Your Faith Through Daily Catholic Prayer</title>
+    <meta name="description" content="Discover Novenas, Rosaries, Catholic Prayers, Saints, and Daily Spiritual Guidance in One Beautiful App.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 50:'#E8EDF4',100:'#C5D1E3',200:'#8BA3C7',300:'#5175AB',400:'#2A4A7F',500:'#1D3557',600:'#192D4A',700:'#142642',800:'#0F1E35',900:'#0A1528' },
+                        gold: { 50:'#FBF6E3',100:'#F5EBC0',200:'#E8CC6E',300:'#D4AF37',400:'#C9A02E',500:'#B8901F' },
+                        beige: { 50:'#FAF8F3',100:'#F5F1E8',200:'#EDE6D6',300:'#E0D5BF' },
+                    },
+                    fontFamily: { 'serif':['Cormorant Garamond','Georgia','serif'], 'sans':['Inter','system-ui','sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection{background:#D4AF37;color:#1D3557}
+        body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+        .logo-cross{position:relative;display:inline-block}
+        .logo-cross::before{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:2px;height:10px;background:#D4AF37;border-radius:1px}
+        .logo-cross::after{content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%);width:8px;height:2px;background:#D4AF37;border-radius:1px}
+
+        .hero-pattern{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M30 10v20M24 16h12'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+
+        .phone-frame{width:260px;height:530px;background:linear-gradient(145deg,#2a2a2a,#111);border-radius:40px;padding:10px;box-shadow:0 30px 60px -15px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.08),inset 0 1px 0 rgba(255,255,255,0.1);flex-shrink:0}
+        .phone-screen{width:100%;height:100%;background:#FAFAF8;border-radius:32px;overflow:hidden;position:relative}
+        .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:24px;background:#111;border-radius:0 0 18px 18px;z-index:10}
+        .phone-notch::after{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:#1a1a2e;border-radius:50%;box-shadow:inset 0 0 2px rgba(50,50,100,0.5)}
+
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease-out,transform 0.8s ease-out}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .fade-in-delay-1{transition-delay:0.1s}
+        .fade-in-delay-2{transition-delay:0.2s}
+        .fade-in-delay-3{transition-delay:0.3s}
+        .fade-in-delay-4{transition-delay:0.4s}
+
+        @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+        .gold-shimmer{background:linear-gradient(90deg,#D4AF37,#E8CC6E,#D4AF37,#B8901F,#D4AF37);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+
+        .store-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:10px;background:#1D3557;color:#fff;transition:all 0.3s ease;cursor:pointer;border:none;text-decoration:none}
+        .store-btn:hover{background:#142642;transform:translateY(-1px);box-shadow:0 8px 25px -8px rgba(29,53,87,0.5)}
+        .store-btn-light{background:#fff;color:#1D3557}
+        .store-btn-light:hover{background:#F5F1E8}
+
+        .feature-card{background:#fff;border:1px solid rgba(29,53,87,0.06);border-radius:16px;padding:28px 24px;transition:all 0.4s ease}
+        .feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -15px rgba(29,53,87,0.1);border-color:rgba(212,175,55,0.2)}
+
+        .novena-card{border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(29,53,87,0.06);transition:all 0.4s ease}
+        .novena-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -15px rgba(29,53,87,0.12)}
+
+        .testimonial-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;backdrop-filter:blur(10px)}
+
+        .faq-item{border-bottom:1px solid rgba(29,53,87,0.08)}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease}
+        .faq-item.active .faq-answer{max-height:300px;padding-bottom:20px}
+        .faq-item.active .faq-chevron{transform:rotate(180deg)}
+        .faq-chevron{transition:transform 0.3s ease}
+
+        .progress-dot{width:8px;height:8px;border-radius:50%}
+        .progress-dot.filled{background:#D4AF37}
+        .progress-dot.empty{background:#E0D5BF}
+
+        .mobile-menu{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+        .mobile-menu.open{max-height:400px}
+
+        .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#D4AF37,#E8CC6E);z-index:9999;transition:width 0.1s linear}
+
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        .float-animation{animation:float 6s ease-in-out infinite}
+
+        .app-header{padding:32px 16px 12px}
+        .app-body{padding:0 16px 16px}
+        .app-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:10px;border:1px solid rgba(0,0,0,0.04)}
+
+        .section-divider{width:60px;height:2px;background:linear-gradient(90deg,#D4AF37,#E8CC6E);border-radius:1px}
+
+        .trust-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(29,53,87,0.04);border:1px solid rgba(29,53,87,0.06);font-size:13px;color:#1D3557}
+    </style>
+</head>
+<body class="font-sans text-navy-500 bg-white overflow-x-hidden">
+
+    <div class="scroll-progress" id="scrollProgress" style="width:0%"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:transparent">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="relative">
+                        <span class="logo-cross font-serif text-2xl font-semibold tracking-wide text-white group-hover:text-gold-200 transition-colors duration-300" style="margin-right:-2px">N</span>
+                        <span class="font-serif text-2xl font-medium tracking-wide text-white group-hover:text-gold-200 transition-colors duration-300">ovenaku</span>
+                    </div>
+                    <div class="h-px w-0 group-hover:w-16 bg-gold-300 transition-all duration-500 mt-0.5"></div>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200">Features</a>
+                    <a href="#novenas" class="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200">Novenas</a>
+                    <a href="#prayers" class="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200">Prayers</a>
+                    <a href="#community" class="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200">Community</a>
+                    <a href="#faq" class="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200">FAQ</a>
+                    <a href="#download" class="store-btn text-sm !py-2.5 !px-5">
+                        <i data-lucide="download" class="w-4 h-4"></i>Download
+                    </a>
+                </div>
+                <button id="menuToggle" class="md:hidden text-white p-2"><i data-lucide="menu" class="w-6 h-6"></i></button>
+            </div>
+            <div id="mobileMenu" class="mobile-menu md:hidden">
+                <div class="pb-6 pt-2 flex flex-col gap-4">
+                    <a href="#features" class="text-sm font-medium text-white/70 hover:text-white transition-colors px-2 py-2 mobile-link">Features</a>
+                    <a href="#novenas" class="text-sm font-medium text-white/70 hover:text-white transition-colors px-2 py-2 mobile-link">Novenas</a>
+                    <a href="#prayers" class="text-sm font-medium text-white/70 hover:text-white transition-colors px-2 py-2 mobile-link">Prayers</a>
+                    <a href="#community" class="text-sm font-medium text-white/70 hover:text-white transition-colors px-2 py-2 mobile-link">Community</a>
+                    <a href="#faq" class="text-sm font-medium text-white/70 hover:text-white transition-colors px-2 py-2 mobile-link">FAQ</a>
+                    <a href="#download" class="store-btn text-sm w-fit mobile-link">Download App</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative min-h-screen flex items-center bg-navy-500 hero-pattern overflow-hidden">
+            <div class="absolute top-20 right-10 w-64 h-64 rounded-full bg-gold-300/5 blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-gold-300/3 blur-3xl"></div>
+            <div class="max-w-7xl mx-auto px-6 py-32 md:py-0 w-full">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+                    <div class="flex-1 text-center lg:text-left">
+                        <div class="inline-flex flex-col items-center lg:items-start mb-8 fade-in">
+                            <div class="relative">
+                                <svg class="absolute -top-4 left-3" width="16" height="18" viewBox="0 0 16 18"><line x1="8" y1="0" x2="8" y2="18" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="6" x2="14" y2="6" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/></svg>
+                                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-semibold tracking-wide text-white" style="letter-spacing:0.05em"><span style="margin-right:-4px">N</span>ovenaku</h1>
+                            </div>
+                            <div class="h-px w-24 bg-gradient-to-r from-gold-300 to-gold-200 mt-2 opacity-60"></div>
+                        </div>
+                        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight mb-6 fade-in fade-in-delay-1">Strengthen Your Faith<br><span class="gold-shimmer">Through Daily Prayer</span></h2>
+                        <p class="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-xl mx-auto lg:mx-0 mb-10 fade-in fade-in-delay-2">Discover Novenas, Rosaries, Catholic Prayers, Saints, and Daily Spiritual Guidance — all in one beautiful app.</p>
+                        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start fade-in fade-in-delay-3">
+                            <a href="#download" class="store-btn text-base">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302L5.864 2.658z"/></svg>
+                                <div class="text-left"><div class="text-[10px] uppercase tracking-wider opacity-70">Get it on</div><div class="text-sm font-semibold -mt-0.5">Google Play</div></div>
+                            </a>
+                            <a href="#download" class="store-btn store-btn-light text-base">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                                <div class="text-left"><div class="text-[10px] uppercase tracking-wider opacity-60">Download on the</div><div class="text-sm font-semibold -mt-0.5">App Store</div></div>
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-6 mt-10 justify-center lg:justify-start fade-in fade-in-delay-4">
+                            <div class="flex items-center gap-1.5">
+                                <div class="flex"><i data-lucide="star" class="w-4 h-4 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-4 h-4 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-4 h-4 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-4 h-4 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-4 h-4 text-gold-300 fill-gold-300"></i></div>
+                                <span class="text-xs text-white/50">4.9 Rating</span>
+                            </div>
+                            <div class="w-px h-4 bg-white/10"></div>
+                            <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-white/40"></i><span class="text-xs text-white/50">10K+ Downloads</span></div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 fade-in fade-in-delay-2">
+                        <div class="phone-frame float-animation">
+                            <div class="phone-screen">
+                                <div class="phone-notch"></div>
+                                <div class="app-header pt-9">
+                                    <div class="flex items-center justify-between"><div><p class="text-[10px] text-gray-400 font-sans">Good Morning</p><p class="text-sm font-semibold text-navy-500 font-sans">Pray with faith</p></div><div class="w-7 h-7 rounded-full bg-gold-300/20 flex items-center justify-center"><i data-lucide="bell" class="w-3 h-3 text-gold-400"></i></div></div>
+                                </div>
+                                <div class="app-body">
+                                    <div class="app-card bg-gradient-to-br from-navy-500 to-navy-600 text-white"><p class="text-[9px] uppercase tracking-wider text-gold-200 mb-1 font-sans">Daily Verse</p><p class="text-xs font-serif italic leading-relaxed opacity-90">"Ask, and it shall be given you; seek, and ye shall find."</p><p class="text-[9px] text-white/50 mt-1.5 font-sans">Matthew 7:7</p></div>
+                                    <div class="app-card"><div class="flex items-center justify-between mb-2"><p class="text-[9px] uppercase tracking-wider text-gray-400 font-sans">Continue Novena</p><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div><p class="text-xs font-semibold text-navy-500 font-sans">Divine Mercy Novena</p><p class="text-[9px] text-gray-400 font-sans">Day 5 of 9</p><div class="flex gap-1.5 mt-2"><div class="progress-dot filled"></div><div class="progress-dot filled"></div><div class="progress-dot filled"></div><div class="progress-dot filled"></div><div class="progress-dot filled" style="box-shadow:0 0 6px rgba(212,175,55,0.4)"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div></div></div>
+                                    <div class="grid grid-cols-4 gap-2 mt-2">
+                                        <div class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-xl bg-navy-50 flex items-center justify-center"><i data-lucide="book-open" class="w-4 h-4 text-navy-400"></i></div><span class="text-[8px] text-gray-400 font-sans">Prayers</span></div>
+                                        <div class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-xl bg-gold-50 flex items-center justify-center"><i data-lucide="circle-dot" class="w-4 h-4 text-gold-400"></i></div><span class="text-[8px] text-gray-400 font-sans">Rosary</span></div>
+                                        <div class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-xl bg-navy-50 flex items-center justify-center"><i data-lucide="sun" class="w-4 h-4 text-navy-400"></i></div><span class="text-[8px] text-gray-400 font-sans">Mercy</span></div>
+                                        <div class="flex flex-col items-center gap-1"><div class="w-10 h-10 rounded-xl bg-gold-50 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4 text-gold-400"></i></div><span class="text-[8px] text-gray-400 font-sans">Calendar</span></div>
+                                    </div>
+                                    <div class="app-card mt-2"><p class="text-[9px] uppercase tracking-wider text-gray-400 font-sans mb-1">Today's Prayer</p><p class="text-xs font-semibold text-navy-500 font-sans">Morning Offering</p><p class="text-[9px] text-gray-400 font-sans mt-0.5">O Jesus, through the Immaculate Heart of Mary...</p></div>
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-4 py-2 flex justify-around">
+                                    <div class="flex flex-col items-center"><i data-lucide="home" class="w-4 h-4 text-gold-400"></i><span class="text-[7px] text-gold-400 font-sans mt-0.5">Home</span></div>
+                                    <div class="flex flex-col items-center"><i data-lucide="search" class="w-4 h-4 text-gray-300"></i><span class="text-[7px] text-gray-300 font-sans mt-0.5">Explore</span></div>
+                                    <div class="flex flex-col items-center"><i data-lucide="heart" class="w-4 h-4 text-gray-300"></i><span class="text-[7px] text-gray-300 font-sans mt-0.5">Favorites</span></div>
+                                    <div class="flex flex-col items-center"><i data-lucide="user" class="w-4 h-4 text-gray-300"></i><span class="text-[7px] text-gray-300 font-sans mt-0.5">Profile</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+        </section>
+
+        <!-- STATS BAR -->
+        <section class="relative -mt-16 z-10 px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl shadow-navy-500/5 border border-navy-500/5 p-8 md:p-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="fade-in"><div class="font-serif text-3xl md:text-4xl font-semibold text-navy-500">100+</div><div class="text-sm text-gray-400 mt-1 font-sans">Catholic Prayers</div></div>
+                    <div class="fade-in fade-in-delay-1"><div class="font-serif text-3xl md:text-4xl font-semibold text-navy-500">50+</div><div class="text-sm text-gray-400 mt-1 font-sans">Novena Collections</div></div>
+                    <div class="fade-in fade-in-delay-2"><div class="font-serif text-3xl md:text-4xl font-semibold text-navy-500">10K+</div><div class="text-sm text-gray-400 mt-1 font-sans">Faithful Users</div></div>
+                    <div class="fade-in fade-in-delay-3"><div class="font-serif text-3xl md:text-4xl font-semibold text-gold-300">4.9</div><div class="text-sm text-gray-400 mt-1 font-sans">App Rating</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="py-24 md:py-32 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">App Features</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">Everything You Need for<br>Your Prayer Life</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                    <p class="mt-6 text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">A comprehensive Catholic prayer companion designed to support your daily devotion and spiritual growth.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="feature-card fade-in"><div class="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-5"><i data-lucide="book-open" class="w-5 h-5 text-navy-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Daily Catholic Prayers</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Access morning, evening, and daily prayers crafted from authentic Catholic traditions and devotions.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center mb-5"><i data-lucide="calendar-days" class="w-5 h-5 text-gold-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Novena Collections</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Pray structured nine-day novenas with daily guidance, progress tracking, and reminders.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-5"><i data-lucide="circle-dot" class="w-5 h-5 text-navy-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Rosary Guide</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Pray the Holy Rosary with step-by-step guidance, mystery meditations, and bead tracking.</p></div>
+                    <div class="feature-card fade-in"><div class="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center mb-5"><i data-lucide="sun" class="w-5 h-5 text-gold-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Divine Mercy Chaplet</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Pray the Chaplet of Divine Mercy with guided prayers and dedicated meditation prompts.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-5"><i data-lucide="star" class="w-5 h-5 text-navy-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Saints & Feast Days</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Learn about Catholic saints, their feast days, and patronages with dedicated prayers.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center mb-5"><i data-lucide="calendar" class="w-5 h-5 text-gold-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Liturgical Calendar</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Follow the Church's liturgical year with seasons, feast days, and daily readings.</p></div>
+                    <div class="feature-card fade-in"><div class="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-5"><i data-lucide="bell" class="w-5 h-5 text-navy-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Prayer Reminders</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Set gentle daily reminders to help you maintain a consistent and faithful prayer routine.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center mb-5"><i data-lucide="wifi-off" class="w-5 h-5 text-gold-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Offline Access</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Access all your prayers and novenas anytime, anywhere — even without an internet connection.</p></div>
+                    <div class="feature-card fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-5"><i data-lucide="heart" class="w-5 h-5 text-navy-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Favorites & Bookmarks</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Save your most cherished prayers for quick and easy access whenever you need them.</p></div>
+                    <div class="feature-card fade-in md:col-span-2 lg:col-span-1 lg:col-start-2"><div class="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center mb-5"><i data-lucide="sparkles" class="w-5 h-5 text-gold-400"></i></div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Daily Reflections</h3><p class="text-sm text-gray-400 leading-relaxed font-sans">Begin each day with inspired reflections drawn from Scripture and Catholic spiritual wisdom.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVENA COLLECTION SECTION -->
+        <section id="novenas" class="py-24 md:py-32 px-6 bg-beige-100">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">Novena Collections</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">Nine Days of<br>Devoted Prayer</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                    <p class="mt-6 text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">Experience the power of sustained prayer through our curated novena collections, each with daily guidance and progress tracking.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="novena-card fade-in"><img src="https://picsum.photos/seed/stjude9/400/200" alt="Novena to St. Jude" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-navy-50 flex items-center justify-center"><i data-lucide="flame" class="w-3 h-3 text-navy-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Hope in Desperation</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Novena to St. Jude</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Turn to St. Jude, the patron saint of hopeless causes, in your most desperate moments of need.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                    <div class="novena-card fade-in fade-in-delay-1"><img src="https://picsum.photos/seed/stjoseph9/400/200" alt="Novena to St. Joseph" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-gold-50 flex items-center justify-center"><i data-lucide="shield" class="w-3 h-3 text-gold-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Patron of Families</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Novena to St. Joseph</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Seek the intercession of the foster father of Jesus for family protection and guidance.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                    <div class="novena-card fade-in fade-in-delay-2"><img src="https://picsum.photos/seed/divinemercy9/400/200" alt="Divine Mercy Novena" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-navy-50 flex items-center justify-center"><i data-lucide="sun" class="w-3 h-3 text-navy-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Jesus, I Trust in You</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Divine Mercy Novena</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Pray the powerful novena revealed to St. Faustina, embracing God's infinite mercy.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                    <div class="novena-card fade-in"><img src="https://picsum.photos/seed/sacredheart9/400/200" alt="Sacred Heart Novena" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-gold-50 flex items-center justify-center"><i data-lucide="heart" class="w-3 h-3 text-gold-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Love & Devotion</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Sacred Heart Novena</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Honor the Sacred Heart of Jesus and deepen your love through this traditional devotion.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                    <div class="novena-card fade-in fade-in-delay-1"><img src="https://picsum.photos/seed/marian9b/400/200" alt="Marian Novenas" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-navy-50 flex items-center justify-center"><i data-lucide="flower-2" class="w-3 h-3 text-navy-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Mother's Intercession</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Marian Novenas</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Seek the Blessed Virgin Mary's powerful intercession through various Marian novenas.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                    <div class="novena-card fade-in fade-in-delay-2"><img src="https://picsum.photos/seed/intentions9/400/200" alt="Special Intention Novenas" class="w-full h-40 object-cover"><div class="p-6"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 rounded-full bg-gold-50 flex items-center justify-center"><i data-lucide="hand-heart" class="w-3 h-3 text-gold-400"></i></div><span class="text-[10px] uppercase tracking-wider text-gold-400 font-sans font-medium">Personal Intentions</span></div><h3 class="font-serif text-lg font-semibold text-navy-500">Special Intention Novenas</h3><p class="text-sm text-gray-400 mt-2 font-sans leading-relaxed">Dedicate your prayers to specific intentions — healing, guidance, gratitude, and peace.</p><div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100"><span class="text-xs text-gray-300 font-sans">9 Days</span><div class="w-px h-3 bg-gray-200"></div><span class="text-xs text-gray-300 font-sans">Daily Prayers</span></div></div></div>
+                </div>
+                <div class="mt-16 bg-white rounded-2xl p-8 md:p-12 border border-navy-500/5 fade-in">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-shrink-0"><div class="flex gap-2"><div class="progress-dot filled"></div><div class="progress-dot filled"></div><div class="progress-dot filled"></div><div class="progress-dot empty" style="box-shadow:0 0 6px rgba(212,175,55,0.3)"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div><div class="progress-dot empty"></div></div></div>
+                        <div><h3 class="font-serif text-xl font-semibold text-navy-500 mb-2">Track Your Prayer Journey</h3><p class="text-gray-400 font-sans leading-relaxed">Each novena includes daily progress tracking so you can see your spiritual journey unfold. Never lose your place — pick up right where you left off.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRAYER LIBRARY SECTION -->
+        <section id="prayers" class="py-24 md:py-32 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">Prayer Library</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">A Comprehensive<br>Catholic Prayer Collection</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                    <p class="mt-6 text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">From morning offerings to evening devotions, find every prayer you need for your daily spiritual life.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="sunrise" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Morning Prayers</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="moon" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Evening Prayers</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-gold-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="circle-dot" class="w-5 h-5 text-gold-400 group-hover:text-gold-200 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Holy Rosary</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="bell" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Angelus</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-gold-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="sun" class="w-5 h-5 text-gold-400 group-hover:text-gold-200 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Divine Mercy</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="wine" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Eucharistic</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in"><div class="w-12 h-12 rounded-xl bg-gold-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="flower-2" class="w-5 h-5 text-gold-400 group-hover:text-gold-200 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Marian Prayers</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-1"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="user" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Saints' Prayers</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in fade-in-delay-2"><div class="w-12 h-12 rounded-xl bg-gold-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="users" class="w-5 h-5 text-gold-400 group-hover:text-gold-200 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Family Prayers</h3></div>
+                    <div class="group bg-beige-50 hover:bg-navy-500 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer border border-transparent hover:border-navy-500 fade-in"><div class="w-12 h-12 rounded-xl bg-navy-50 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-3 transition-colors duration-300"><i data-lucide="hand-heart" class="w-5 h-5 text-navy-400 group-hover:text-gold-300 transition-colors duration-300"></i></div><h3 class="font-serif text-sm font-semibold text-navy-500 group-hover:text-white transition-colors duration-300">Special Intentions</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY & FAITH JOURNEY -->
+        <section id="community" class="py-24 md:py-32 px-6 bg-navy-500 hero-pattern relative overflow-hidden">
+            <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-gold-300/5 blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-gold-300/3 blur-3xl"></div>
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-300 font-sans font-medium mb-4">Community & Faith</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-white tracking-tight">You Are Not Alone<br>in Your Faith Journey</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                    <p class="mt-6 text-white/50 max-w-2xl mx-auto text-lg font-light leading-relaxed">Join thousands of faithful Catholics who pray, grow, and find strength together through Novenaku.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="testimonial-card fade-in"><div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i></div><p class="text-white/70 text-sm leading-relaxed font-sans mb-6">"Novenaku has transformed my daily prayer life. The novena tracker keeps me committed, and the prayers are beautifully written. I feel closer to God every day."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gold-300/20 flex items-center justify-center"><span class="font-serif text-sm font-semibold text-gold-300">MR</span></div><div><p class="text-sm font-medium text-white font-sans">Maria R.</p><p class="text-xs text-white/40 font-sans">Daily User since 2024</p></div></div></div>
+                    <div class="testimonial-card fade-in fade-in-delay-1"><div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i></div><p class="text-white/70 text-sm leading-relaxed font-sans mb-6">"As a busy parent, I needed something simple. The morning and evening prayers are perfect, and the reminders help me stay consistent. My whole family uses it now."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gold-300/20 flex items-center justify-center"><span class="font-serif text-sm font-semibold text-gold-300">JD</span></div><div><p class="text-sm font-medium text-white font-sans">James D.</p><p class="text-xs text-white/40 font-sans">Father of three</p></div></div></div>
+                    <div class="testimonial-card fade-in fade-in-delay-2"><div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i><i data-lucide="star" class="w-3.5 h-3.5 text-gold-300 fill-gold-300"></i></div><p class="text-white/70 text-sm leading-relaxed font-sans mb-6">"The Divine Mercy Novena guide was exactly what I needed during a difficult time. Having all these prayers offline means I can pray anywhere. Truly a blessing."</p><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gold-300/20 flex items-center justify-center"><span class="font-serif text-sm font-semibold text-gold-300">AS</span></div><div><p class="text-sm font-medium text-white font-sans">Ana S.</p><p class="text-xs text-white/40 font-sans">Parish volunteer</p></div></div></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 fade-in">
+                    <div class="text-center"><div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="heart" class="w-6 h-6 text-gold-300"></i></div><h4 class="font-serif text-base font-semibold text-white mb-1">Faith</h4><p class="text-xs text-white/40 font-sans">Grounded in Catholic tradition</p></div>
+                    <div class="text-center"><div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="handshake" class="w-6 h-6 text-gold-300"></i></div><h4 class="font-serif text-base font-semibold text-white mb-1">Support</h4><p class="text-xs text-white/40 font-sans">You're never alone in prayer</p></div>
+                    <div class="text-center"><div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="users" class="w-6 h-6 text-gold-300"></i></div><h4 class="font-serif text-base font-semibold text-white mb-1">Belonging</h4><p class="text-xs text-white/40 font-sans">Join a faithful community</p></div>
+                    <div class="text-center"><div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3"><i data-lucide="trending-up" class="w-6 h-6 text-gold-300"></i></div><h4 class="font-serif text-base font-semibold text-white mb-1">Growth</h4><p class="text-xs text-white/40 font-sans">Deepen your spiritual life</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APP SCREENSHOTS SECTION -->
+        <section id="screenshots" class="py-24 md:py-32 px-6 bg-beige-100 overflow-hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">App Preview</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">Experience the<br>Beauty of Novenaku</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                    <div class="fade-in"><div class="phone-frame" style="width:220px;height:450px;border-radius:34px;padding:8px"><div class="phone-screen" style="border-radius:28px"><div class="phone-notch" style="width:80px;height:20px;border-radius:0 0 14px 14px"></div><div class="pt-7 px-3 pb-3"><div class="flex items-center gap-2 mb-3"><i data-lucide="arrow-left" class="w-3 h-3 text-gray-400"></i><span class="text-[9px] text-gray-400 font-sans">Back</span></div><p class="text-[8px] uppercase tracking-wider text-gold-400 font-sans mb-1">Morning Prayer</p><h4 class="text-sm font-serif font-semibold text-navy-500 mb-2">Morning Offering</h4><div class="h-px bg-gray-100 mb-2"></div><p class="text-[9px] text-gray-500 font-serif leading-relaxed italic">O Jesus, through the Immaculate Heart of Mary, I offer You my prayers, works, joys, and sufferings of this day...</p><p class="text-[9px] text-gray-500 font-serif leading-relaxed italic mt-2">I offer them for the intentions of our Holy Father, the propagation of the Faith...</p><div class="flex items-center gap-2 mt-3"><div class="w-6 h-6 rounded-full bg-beige-100 flex items-center justify-center"><i data-lucide="heart" class="w-3 h-3 text-gray-300"></i></div><div class="w-6 h-6 rounded-full bg-beige-100 flex items-center justify-center"><i data-lucide="share-2" class="w-3 h-3 text-gray-300"></i></div></div></div></div></div><p class="text-center text-xs text-gray-400 mt-4 font-sans">Prayer Reading</p></div>
+                    <div class="fade-in fade-in-delay-1"><div class="phone-frame" style="width:220px;height:450px;border-radius:34px;padding:8px"><div class="phone-screen" style="border-radius:28px"><div class="phone-notch" style="width:80px;height:20px;border-radius:0 0 14px 14px"></div><div class="pt-7 px-3 pb-3"><div class="flex items-center justify-between mb-3"><i data-lucide="arrow-left" class="w-3 h-3 text-gray-400"></i><i data-lucide="bell" class="w-3 h-3 text-gray-300"></i></div><p class="text-[8px] uppercase tracking-wider text-gold-400 font-sans mb-1">Active Novena</p><h4 class="text-sm font-serif font-semibold text-navy-500 mb-1">Divine Mercy</h4><div class="flex gap-1 mt-2 mb-3"><div class="w-5 h-5 rounded-full bg-gold-300 flex items-center justify-center text-[7px] text-white font-sans font-semibold">✓</div><div class="w-5 h-5 rounded-full bg-gold-300 flex items-center justify-center text-[7px] text-white font-sans font-semibold">✓</div><div class="w-5 h-5 rounded-full bg-gold-300 flex items-center justify-center text-[7px] text-white font-sans font-semibold">✓</div><div class="w-5 h-5 rounded-full bg-gold-300 flex items-center justify-center text-[7px] text-white font-sans font-semibold">✓</div><div class="w-5 h-5 rounded-full bg-navy-500 flex items-center justify-center text-[7px] text-white font-sans font-semibold shadow-md">5</div><div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-[7px] text-gray-300 font-sans">6</div><div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-[7px] text-gray-300 font-sans">7</div><div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-[7px] text-gray-300 font-sans">8</div><div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-[7px] text-gray-300 font-sans">9</div></div><div class="bg-beige-50 rounded-lg p-3 mb-2"><p class="text-[9px] text-gold-400 font-sans font-medium mb-1">Day 5 Prayer</p><p class="text-[8px] text-gray-500 font-serif leading-relaxed">"Today, bring to Me the souls of those who have separated themselves from My Church..."</p></div><div class="bg-navy-500 text-white text-center py-2 rounded-lg text-[9px] font-sans font-medium mt-2">Pray Day 5 →</div></div></div></div><p class="text-center text-xs text-gray-400 mt-4 font-sans">Novena Tracking</p></div>
+                    <div class="fade-in fade-in-delay-2"><div class="phone-frame" style="width:220px;height:450px;border-radius:34px;padding:8px"><div class="phone-screen" style="border-radius:28px"><div class="phone-notch" style="width:80px;height:20px;border-radius:0 0 14px 14px"></div><div class="pt-7 px-3 pb-3"><div class="flex items-center justify-between mb-3"><i data-lucide="arrow-left" class="w-3 h-3 text-gray-400"></i><i data-lucide="settings" class="w-3 h-3 text-gray-300"></i></div><p class="text-[8px] uppercase tracking-wider text-gold-400 font-sans mb-1">Holy Rosary</p><h4 class="text-sm font-serif font-semibold text-navy-500 mb-2">Glorious Mysteries</h4><div class="space-y-1.5"><div class="flex items-center gap-2 bg-beige-50 rounded-lg p-2"><div class="w-4 h-4 rounded-full bg-gold-300 flex items-center justify-center"><span class="text-[6px] text-white font-sans font-bold">1</span></div><span class="text-[8px] text-navy-500 font-sans font-medium">The Resurrection</span></div><div class="flex items-center gap-2 bg-navy-500 rounded-lg p-2"><div class="w-4 h-4 rounded-full bg-gold-300 flex items-center justify-center"><span class="text-[6px] text-white font-sans font-bold">2</span></div><span class="text-[8px] text-white font-sans font-medium">The Ascension</span></div><div class="flex items-center gap-2 bg-beige-50 rounded-lg p-2"><div class="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center"><span class="text-[6px] text-gray-400 font-sans font-bold">3</span></div><span class="text-[8px] text-gray-400 font-sans">Descent of Holy Spirit</span></div><div class="flex items-center gap-2 bg-beige-50 rounded-lg p-2"><div class="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center"><span class="text-[6px] text-gray-400 font-sans font-bold">4</span></div><span class="text-[8px] text-gray-400 font-sans">The Assumption</span></div><div class="flex items-center gap-2 bg-beige-50 rounded-lg p-2"><div class="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center"><span class="text-[6px] text-gray-400 font-sans font-bold">5</span></div><span class="text-[8px] text-gray-400 font-sans">Coronation of Mary</span></div></div></div></div></div><p class="text-center text-xs text-gray-400 mt-4 font-sans">Rosary Guide</p></div>
+                    <div class="fade-in fade-in-delay-3"><div class="phone-frame" style="width:220px;height:450px;border-radius:34px;padding:8px"><div class="phone-screen" style="border-radius:28px"><div class="phone-notch" style="width:80px;height:20px;border-radius:0 0 14px 14px"></div><div class="pt-7 px-3 pb-3"><p class="text-[8px] uppercase tracking-wider text-gold-400 font-sans mb-2">Favorites</p><h4 class="text-sm font-serif font-semibold text-navy-500 mb-3">Saved Prayers</h4><div class="space-y-2"><div class="flex items-center justify-between bg-beige-50 rounded-lg p-2.5"><div class="flex items-center gap-2"><i data-lucide="heart" class="w-3 h-3 text-gold-400 fill-gold-400"></i><span class="text-[9px] text-navy-500 font-sans font-medium">Hail Mary</span></div><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div><div class="flex items-center justify-between bg-beige-50 rounded-lg p-2.5"><div class="flex items-center gap-2"><i data-lucide="heart" class="w-3 h-3 text-gold-400 fill-gold-400"></i><span class="text-[9px] text-navy-500 font-sans font-medium">Our Father</span></div><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div><div class="flex items-center justify-between bg-beige-50 rounded-lg p-2.5"><div class="flex items-center gap-2"><i data-lucide="heart" class="w-3 h-3 text-gold-400 fill-gold-400"></i><span class="text-[9px] text-navy-500 font-sans font-medium">Glory Be</span></div><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div><div class="flex items-center justify-between bg-beige-50 rounded-lg p-2.5"><div class="flex items-center gap-2"><i data-lucide="heart" class="w-3 h-3 text-gold-400 fill-gold-400"></i><span class="text-[9px] text-navy-500 font-sans font-medium">Morning Offering</span></div><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div><div class="flex items-center justify-between bg-beige-50 rounded-lg p-2.5"><div class="flex items-center gap-2"><i data-lucide="heart" class="w-3 h-3 text-gold-400 fill-gold-400"></i><span class="text-[9px] text-navy-500 font-sans font-medium">St. Michael Prayer</span></div><i data-lucide="chevron-right" class="w-3 h-3 text-gray-300"></i></div></div></div></div></div><p class="text-center text-xs text-gray-400 mt-4 font-sans">Favorites</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST & TRANSPARENCY SECTION -->
+        <section id="trust" class="py-24 md:py-32 px-6 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">Trust & Transparency</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">Our Commitment<br>to Integrity</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                </div>
+                <div class="space-y-8 fade-in">
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-beige-100 flex items-center justify-center flex-shrink-0 mt-1"><i data-lucide="shield-check" class="w-5 h-5 text-navy-400"></i></div><div><h3 class="font-serif text-lg font-semibold text-navy-500 mb-2">Authentic Catholic Content</h3><p class="text-gray-400 font-sans leading-relaxed">All prayers, novenas, and devotional content are sourced from approved Catholic texts and traditions. We are committed to respecting and faithfully representing Catholic teachings.</p></div></div>
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-beige-100 flex items-center justify-center flex-shrink-0 mt-1"><i data-lucide="heart-handshake" class="w-5 h-5 text-navy-400"></i></div><div><h3 class="font-serif text-lg font-semibold text-navy-500 mb-2">Educational & Devotional Purpose</h3><p class="text-gray-400 font-sans leading-relaxed">Novenaku is designed as a prayer companion and educational resource. We do not make any misleading spiritual claims, promises of miracles, or exaggerated religious guarantees.</p></div></div>
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-beige-100 flex items-center justify-center flex-shrink-0 mt-1"><i data-lucide="users" class="w-5 h-5 text-navy-400"></i></div><div><h3 class="font-serif text-lg font-semibold text-navy-500 mb-2">Safe & Family-Friendly</h3><p class="text-gray-400 font-sans leading-relaxed">Our content is appropriate for all ages and suitable for family use. We maintain strict editorial standards to ensure a respectful, safe, and uplifting experience.</p></div></div>
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-beige-100 flex items-center justify-center flex-shrink-0 mt-1"><i data-lucide="lock" class="w-5 h-5 text-navy-400"></i></div><div><h3 class="font-serif text-lg font-semibold text-navy-500 mb-2">Privacy & Data Protection</h3><p class="text-gray-400 font-sans leading-relaxed">We take your privacy seriously. Novenaku does not sell personal data. All user information is handled in accordance with our Privacy Policy and applicable data protection regulations.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVACY & COMPLIANCE SECTION -->
+        <section id="privacy" class="py-24 md:py-32 px-6 bg-beige-50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">Privacy & Compliance</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-semibold text-navy-500 tracking-tight">Your Trust Matters</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+                    <div class="trust-badge"><i data-lucide="shield" class="w-4 h-4 text-navy-300"></i><span class="font-sans">Privacy Policy</span></div>
+                    <div class="trust-badge"><i data-lucide="file-text" class="w-4 h-4 text-navy-300"></i><span class="font-sans">Terms of Service</span></div>
+                    <div class="trust-badge"><i data-lucide="lock" class="w-4 h-4 text-navy-300"></i><span class="font-sans">Data Protection</span></div>
+                    <div class="trust-badge"><i data-lucide="check-circle" class="w-4 h-4 text-navy-300"></i><span class="font-sans">Google Play Compliant</span></div>
+                    <div class="trust-badge"><i data-lucide="smartphone" class="w-4 h-4 text-navy-300"></i><span class="font-sans">App Store Compliant</span></div>
+                    <div class="trust-badge"><i data-lucide="baby" class="w-4 h-4 text-navy-300"></i><span class="font-sans">Family-Friendly</span></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
+                    <a href="#" class="bg-white rounded-xl p-6 text-center border border-navy-500/5 hover:border-gold-300/30 hover:shadow-lg hover:shadow-navy-500/5 transition-all duration-300 group"><i data-lucide="mail" class="w-6 h-6 text-navy-300 group-hover:text-gold-400 transition-colors duration-300 mx-auto mb-3"></i><h4 class="font-serif text-sm font-semibold text-navy-500 mb-1">Contact Support</h4><p class="text-xs text-gray-400 font-sans">support@novenaku.com</p></a>
+                    <a href="#" class="bg-white rounded-xl p-6 text-center border border-navy-500/5 hover:border-gold-300/30 hover:shadow-lg hover:shadow-navy-500/5 transition-all duration-300 group"><i data-lucide="scale" class="w-6 h-6 text-navy-300 group-hover:text-gold-400 transition-colors duration-300 mx-auto mb-3"></i><h4 class="font-serif text-sm font-semibold text-navy-500 mb-1">Legal Information</h4><p class="text-xs text-gray-400 font-sans">Policies & Terms</p></a>
+                    <a href="#" class="bg-white rounded-xl p-6 text-center border border-navy-500/5 hover:border-gold-300/30 hover:shadow-lg hover:shadow-navy-500/5 transition-all duration-300 group"><i data-lucide="code" class="w-6 h-6 text-navy-300 group-hover:text-gold-400 transition-colors duration-300 mx-auto mb-3"></i><h4 class="font-serif text-sm font-semibold text-navy-500 mb-1">Developer Info</h4><p class="text-xs text-gray-400 font-sans">About the team</p></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-24 md:py-32 px-6 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-400 font-sans font-medium mb-4">Frequently Asked</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-navy-500 tracking-tight">Common Questions</h2>
+                    <div class="section-divider mx-auto mt-6"></div>
+                </div>
+                <div class="space-y-0 fade-in">
+                    <div class="faq-item active">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">Is Novenaku free to use?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">Yes, Novenaku is free to download and use. Core features including daily prayers, novena collections, the rosary guide, and prayer reminders are available at no cost. We believe everyone should have access to beautiful Catholic prayer resources.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">Can prayers be accessed offline?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">Absolutely. All prayers and novena content can be accessed without an internet connection once downloaded. This means you can pray anywhere — at church, during travel, or in moments when you need spiritual comfort the most.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">How do prayer reminders work?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">You can set custom daily reminders for morning prayers, evening prayers, novena days, and any specific prayer you'd like to pray regularly. Reminders appear as gentle, respectful notifications that help you build a consistent prayer habit.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">Is the content aligned with Catholic traditions?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">Yes. All prayers, novenas, and devotional content are carefully sourced from authentic Catholic texts and approved liturgical resources. We work to ensure that every prayer faithfully represents Catholic tradition and teaching.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">Can I save favorite prayers?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">Yes! You can bookmark any prayer, novena, or reading to your personal Favorites collection. This gives you quick and easy access to your most cherished prayers whenever you need them.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex items-center justify-between py-5 text-left" onclick="toggleFaq(this)"><span class="font-serif text-lg font-semibold text-navy-500 pr-8">How often is content updated?</span><i data-lucide="chevron-down" class="w-5 h-5 text-gray-300 faq-chevron flex-shrink-0"></i></button>
+                        <div class="faq-answer"><p class="text-gray-400 font-sans leading-relaxed pb-5">We regularly add new prayers, novenas, and features to the app. The liturgical calendar is updated annually, and we continuously expand our library based on community feedback and liturgical seasons.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA SECTION -->
+        <section id="download" class="py-24 md:py-32 px-6 bg-navy-500 hero-pattern relative overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold-300/5 blur-3xl"></div>
+            <div class="max-w-3xl mx-auto text-center relative z-10">
+                <div class="fade-in">
+                    <div class="flex items-center justify-center mb-8"><svg width="24" height="28" viewBox="0 0 24 28"><line x1="12" y1="0" x2="12" y2="28" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="9" x2="21" y2="9" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/></svg></div>
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight">Begin Your Daily<br>Prayer Journey Today</h2>
+                    <p class="mt-6 text-white/50 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">Grow closer to God through prayer, reflection, and daily devotion. Your spiritual companion awaits.</p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center mt-10">
+                        <a href="#" class="store-btn text-base !px-8 !py-4"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302L5.864 2.658z"/></svg><div class="text-left"><div class="text-[10px] uppercase tracking-wider opacity-70">Get it on</div><div class="text-sm font-semibold -mt-0.5">Google Play</div></div></a>
+                        <a href="#" class="store-btn store-btn-light text-base !px-8 !py-4"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="text-left"><div class="text-[10px] uppercase tracking-wider opacity-60">Download on the</div><div class="text-sm font-semibold -mt-0.5">App Store</div></div></a>
+                    </div>
+                    <p class="mt-8 text-white/30 text-xs font-sans">Free to download · No credit card required · Join 10,000+ faithful users</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <a href="#" class="inline-flex flex-col items-start">
+                        <div class="relative">
+                            <svg class="absolute -top-3 left-1.5" width="12" height="14" viewBox="0 0 12 14"><line x1="6" y1="0" x2="6" y2="14" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="11" y2="5" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span class="font-serif text-xl font-semibold tracking-wide text-white" style="margin-right:-2px">N</span><span class="font-serif text-xl font-medium tracking-wide text-white">ovenaku</span>
+                        </div>
+                        <div class="h-px w-16 bg-gold-300/40 mt-1"></div>
+                    </a>
+                    <p class="text-sm text-white/30 mt-4 font-sans leading-relaxed">Your daily Catholic prayer companion. Strengthening faith through devotion, one prayer at a time.</p>
+                    <div class="flex items-center gap-4 mt-6">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"><i data-lucide="instagram" class="w-4 h-4 text-white/40"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"><i data-lucide="facebook" class="w-4 h-4 text-white/40"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"><i data-lucide="twitter" class="w-4 h-4 text-white/40"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"><i data-lucide="youtube" class="w-4 h-4 text-white/40"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.15em] text-white/50 font-sans font-medium mb-4">App</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Features</a></li>
+                        <li><a href="#novenas" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Novenas</a></li>
+                        <li><a href="#prayers" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Prayer Library</a></li>
+                        <li><a href="#screenshots" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">App Preview</a></li>
+                        <li><a href="#download" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Download</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.15em] text-white/50 font-sans font-medium mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">About Us</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Contact</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Support</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.15em] text-white/50 font-sans font-medium mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Privacy Policy</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Terms of Service</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Data Protection</a></li>
+                        <li><a href="#" class="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 font-sans">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-white/20 font-sans">© 2025 Novenaku. All rights reserved. A Catholic prayer companion app.</p>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-white/20 font-sans">Made with</span>
+                    <svg width="12" height="14" viewBox="0 0 12 14"><line x1="6" y1="0" x2="6" y2="14" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/><line x1="1" y1="5" x2="11" y2="5" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>
+                    <span class="text-xs text-white/20 font-sans">and faith</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        });
+
+        // Navbar scroll behavior
+        var navbar = document.getElementById('navbar');
+        var lastScrollY = 0;
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY;
+            if (scrollY > 100) {
+                navbar.style.background = 'rgba(29,53,87,0.95)';
+                navbar.style.backdropFilter = 'blur(16px)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.background = 'transparent';
+                navbar.style.backdropFilter = 'none';
+                navbar.style.boxShadow = 'none';
+            }
+            lastScrollY = scrollY;
+        });
+
+        // Mobile menu toggle
+        var menuToggle = document.getElementById('menuToggle');
+        var mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+        });
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            var item = btn.parentElement;
+            var isActive = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            // Open clicked if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Fade-in on scroll (Intersection Observer)
+        var observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.1
+        };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
